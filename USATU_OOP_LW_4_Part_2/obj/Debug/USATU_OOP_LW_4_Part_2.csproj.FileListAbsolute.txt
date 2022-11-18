@@ -1,0 +1,11 @@
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\bin\Debug\USATU_OOP_LW_4_Part_2.exe.config
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\bin\Debug\USATU_OOP_LW_4_Part_2.exe
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\bin\Debug\USATU_OOP_LW_4_Part_2.pdb
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.csproj.AssemblyReference.cache
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.csproj.SuggestedBindingRedirects.cache
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.Properties.Resources.resources
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.csproj.GenerateResource.cache
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.csproj.CoreCompileInputs.cache
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.exe
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.pdb
+C:\Users\wi\RiderProjects\USATU_OOP_LW_4_Part_2\USATU_OOP_LW_4_Part_2\obj\Debug\USATU_OOP_LW_4_Part_2.FormMain.resources
