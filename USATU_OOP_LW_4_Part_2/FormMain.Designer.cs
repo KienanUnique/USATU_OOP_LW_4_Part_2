@@ -53,8 +53,6 @@
             this.textBoxA.Name = "textBoxA";
             this.textBoxA.Size = new System.Drawing.Size(120, 20);
             this.textBoxA.TabIndex = 0;
-            this.textBoxA.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxA_KeyUp);
-            this.textBoxA.Leave += new System.EventHandler(this.textBoxA_Leave);
             // 
             // numericUpDownA
             // 
@@ -86,8 +84,6 @@
             this.textBoxB.Name = "textBoxB";
             this.textBoxB.Size = new System.Drawing.Size(120, 20);
             this.textBoxB.TabIndex = 0;
-            this.textBoxB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxB_KeyUp);
-            this.textBoxB.Leave += new System.EventHandler(this.textBoxB_Leave);
             // 
             // numericUpDownB
             // 
@@ -109,8 +105,6 @@
             this.textBoxC.Name = "textBoxC";
             this.textBoxC.Size = new System.Drawing.Size(120, 20);
             this.textBoxC.TabIndex = 0;
-            this.textBoxC.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxC_KeyUp);
-            this.textBoxC.Leave += new System.EventHandler(this.textBoxC_Leave);
             // 
             // numericUpDownC
             // 

@@ -4,9 +4,9 @@
     {
         public delegate void NeedChangeNum(int newValue);
 
-        public event NeedChangeNum ChangeA;
-        public event NeedChangeNum ChangeB;
-        public event NeedChangeNum ChangeC;
+        public event NeedChangeNum UiUpdateA;
+        public event NeedChangeNum UiUpdateB;
+        public event NeedChangeNum UiUpdateC;
 
         private readonly int _maxValue, _minValue;
         private int _numA;
@@ -16,11 +16,7 @@
         public int NumA
         {
             get => _numA;
-            private set
-            {
-                _numA = value;
-                ChangeA?.Invoke(value);
-            }
+            private set => _numA = value;
         }
 
         public int NumB
@@ -29,10 +25,10 @@
             private set
             {
                 _numB = value;
-                ChangeB?.Invoke(value);
                 if (value < _numA)
                 {
                     NumA = value;
+                    UiUpdateA?.Invoke(NumA);
                 }
             }
         }
@@ -43,45 +39,78 @@
             private set
             {
                 _numC = value;
-                ChangeC?.Invoke(value);
                 if (value < NumB)
                 {
                     NumB = value;
+                    UiUpdateB?.Invoke(NumB);
                 }
             }
         }
 
-        public bool TrySetA(int newValue)
+        public void TrySetA(string newValueString)
         {
-            if (_minValue <= NumA && _maxValue >= NumA && newValue < _numB)
+            if (int.TryParse(newValueString, out var newValue))
+            {
+                TrySetA(newValue);
+            }
+            else
+            {
+                UiUpdateA?.Invoke(NumA);
+            }
+        }
+
+        public void TrySetB(string newValueString)
+        {
+            if (int.TryParse(newValueString, out var newValue))
+            {
+                TrySetB(newValue);
+            }
+            else
+            {
+                UiUpdateB?.Invoke(NumB);
+            }
+        }
+
+        public void TrySetC(string newValueString)
+        {
+            if (int.TryParse(newValueString, out var newValue))
+            {
+                TrySetC(newValue);
+            }
+            else
+            {
+                UiUpdateC?.Invoke(NumC);
+            }
+        }
+
+        public void TrySetA(int newValue)
+        {
+            if (IsNumInAcceptableRange(newValue) && newValue <= NumB)
             {
                 NumA = newValue;
-                return true;
             }
 
-            return false;
+            UiUpdateA?.Invoke(NumA);
         }
 
-        public bool TrySetB(int newValue)
+        public void TrySetB(int newValue)
         {
-            if (_minValue <= NumB && _maxValue >= NumB && newValue < _numC)
+            if (IsNumInAcceptableRange(newValue) && newValue <= NumC)
             {
                 NumB = newValue;
-                return true;
             }
 
-            return false;
+            UiUpdateB?.Invoke(NumB);
         }
 
-        public bool TrySetC(int newValue) // TODO: return value itself
+        public void TrySetC(int newValue)
         {
-            if (_minValue <= NumC && _maxValue >= NumC)
+            if (IsNumInAcceptableRange(newValue))
             {
                 NumC = newValue;
-                return true;
             }
 
-            return false;
+            UiUpdateC?.Invoke(NumC);
         }
 
         public ModelOfInequalityOfThreeNumbers(int minValue, int maxValue)
@@ -91,6 +120,11 @@
             _numA = minValue;
             _numB = (minValue + maxValue) / 2;
             _numC = maxValue;
+        }
+
+        private bool IsNumInAcceptableRange(int numToCheck)
+        {
+            return _minValue <= numToCheck && _maxValue >= numToCheck;
         }
     }
 }
