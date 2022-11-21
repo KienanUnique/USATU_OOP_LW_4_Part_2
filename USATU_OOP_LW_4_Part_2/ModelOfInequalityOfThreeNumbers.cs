@@ -25,13 +25,14 @@
                 if (IsNumInAcceptableRange(NumA) && IsNumInAcceptableRange(NumB) && IsNumInAcceptableRange(NumC) &&
                     NumA <= NumB && NumA <= NumC && NumB <= NumC) return;
             }
+
             NumA = MinValue;
             NumB = (MinValue + MaxValue) / 2;
             NumC = MaxValue;
-            FileStorageOfThreeNumbers.WriteThreeNumbersToStorage(NumA, NumB, NumC);
+            WriteNumbersToFile();
         }
 
-        public void WriteDataToFile()
+        public void WriteNumbersToFile()
         {
             FileStorageOfThreeNumbers.WriteThreeNumbersToStorage(NumA, NumB, NumC);
         }
@@ -74,9 +75,20 @@
 
         public void TrySetA(int newValue)
         {
-            if (IsNumInAcceptableRange(newValue) && newValue <= NumB)
+            if (IsNumInAcceptableRange(newValue))
             {
                 NumA = newValue;
+                if (NumA > NumB)
+                {
+                    NumB = NumA;
+                    UiUpdateB?.Invoke(NumB);
+                }
+
+                if (NumB > NumC)
+                {
+                    NumC = NumB;
+                    UiUpdateC?.Invoke(NumB);
+                }
             }
 
             UiUpdateA?.Invoke(NumA);
@@ -94,9 +106,20 @@
 
         public void TrySetC(int newValue)
         {
-            if (IsNumInAcceptableRange(newValue) && newValue >= NumB)
+            if (IsNumInAcceptableRange(newValue))
             {
                 NumC = newValue;
+                if (NumC < NumB)
+                {
+                    NumB = newValue;
+                    UiUpdateB?.Invoke(NumB);
+                }
+
+                if (NumB < NumA)
+                {
+                    NumA = NumB;
+                    UiUpdateA?.Invoke(NumB);
+                }
             }
 
             UiUpdateC?.Invoke(NumC);

@@ -133,7 +133,7 @@ namespace USATU_OOP_LW_4_Part_2
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _modelOfInequality.WriteDataToFile();
+            _modelOfInequality.WriteNumbersToFile();
         }
     }
 }
