@@ -5,9 +5,7 @@ namespace USATU_OOP_LW_4_Part_2
 {
     public partial class FormMain : Form
     {
-        private const int MaxValue = 100;
-        private const int MinValue = 0;
-        private readonly ModelOfInequalityOfThreeNumbers _modelOfInequality = new(MinValue, MaxValue);
+        private readonly ModelOfInequalityOfThreeNumbers _modelOfInequality = new();
 
         private void UiUpdateValueA(int newValue)
         {
@@ -34,18 +32,19 @@ namespace USATU_OOP_LW_4_Part_2
         {
             InitializeComponent();
 
-            numericUpDownA.Maximum = MaxValue;
-            numericUpDownB.Maximum = MaxValue;
-            numericUpDownC.Maximum = MaxValue;
-            trackBarA.Maximum = MaxValue;
-            trackBarB.Maximum = MaxValue;
-            trackBarC.Maximum = MaxValue;
-            trackBarA.Minimum = MinValue;
-            trackBarB.Minimum = MinValue;
-            trackBarC.Minimum = MinValue;
-            numericUpDownA.Minimum = MinValue;
-            numericUpDownB.Minimum = MinValue;
-            numericUpDownC.Minimum = MinValue;
+            numericUpDownA.Maximum = ModelOfInequalityOfThreeNumbers.MaxValue;
+            numericUpDownB.Maximum = ModelOfInequalityOfThreeNumbers.MaxValue;
+            numericUpDownC.Maximum = ModelOfInequalityOfThreeNumbers.MaxValue;
+            trackBarA.Maximum = ModelOfInequalityOfThreeNumbers.MaxValue;
+            trackBarB.Maximum = ModelOfInequalityOfThreeNumbers.MaxValue;
+            trackBarC.Maximum = ModelOfInequalityOfThreeNumbers.MaxValue;
+
+            trackBarA.Minimum = ModelOfInequalityOfThreeNumbers.MinValue;
+            trackBarB.Minimum = ModelOfInequalityOfThreeNumbers.MinValue;
+            trackBarC.Minimum = ModelOfInequalityOfThreeNumbers.MinValue;
+            numericUpDownA.Minimum = ModelOfInequalityOfThreeNumbers.MinValue;
+            numericUpDownB.Minimum = ModelOfInequalityOfThreeNumbers.MinValue;
+            numericUpDownC.Minimum = ModelOfInequalityOfThreeNumbers.MinValue;
 
             UiUpdateValueC(_modelOfInequality.NumC);
             UiUpdateValueB(_modelOfInequality.NumB);
@@ -130,6 +129,11 @@ namespace USATU_OOP_LW_4_Part_2
         private void trackBarC_TrySetValue(object sender, EventArgs e)
         {
             _modelOfInequality.TrySetC(trackBarC.Value);
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _modelOfInequality.WriteDataToFile();
         }
     }
 }

@@ -138,6 +138,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FormMain";
             this.Text = "LW 4";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownA)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.trackBarA)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.numericUpDownB)).EndInit();

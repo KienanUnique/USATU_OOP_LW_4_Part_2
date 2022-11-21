@@ -8,43 +8,32 @@
         public event NeedChangeNum UiUpdateB;
         public event NeedChangeNum UiUpdateC;
 
-        private readonly int _maxValue, _minValue;
-        private int _numA;
-        private int _numB;
-        private int _numC;
+        public const int MaxValue = 100;
+        public const int MinValue = 0;
 
-        public int NumA
+        public int NumA { get; private set; }
+
+        public int NumB { get; private set; }
+
+        public int NumC { get; private set; }
+
+        public ModelOfInequalityOfThreeNumbers()
         {
-            get => _numA;
-            private set => _numA = value;
+            if (FileStorageOfThreeNumbers.IsFileExists())
+            {
+                (NumA, NumB, NumC) = FileStorageOfThreeNumbers.GetThreeNumbersFromStorage();
+                if (IsNumInAcceptableRange(NumA) && IsNumInAcceptableRange(NumB) && IsNumInAcceptableRange(NumC) &&
+                    NumA <= NumB && NumA <= NumC && NumB <= NumC) return;
+            }
+            NumA = MinValue;
+            NumB = (MinValue + MaxValue) / 2;
+            NumC = MaxValue;
+            FileStorageOfThreeNumbers.WriteThreeNumbersToStorage(NumA, NumB, NumC);
         }
 
-        public int NumB
+        public void WriteDataToFile()
         {
-            get => _numB;
-            private set
-            {
-                _numB = value;
-                if (value < _numA)
-                {
-                    NumA = value;
-                    UiUpdateA?.Invoke(NumA);
-                }
-            }
-        }
-
-        public int NumC
-        {
-            get => _numC;
-            private set
-            {
-                _numC = value;
-                if (value < NumB)
-                {
-                    NumB = value;
-                    UiUpdateB?.Invoke(NumB);
-                }
-            }
+            FileStorageOfThreeNumbers.WriteThreeNumbersToStorage(NumA, NumB, NumC);
         }
 
         public void TrySetA(string newValueString)
@@ -95,7 +84,7 @@
 
         public void TrySetB(int newValue)
         {
-            if (IsNumInAcceptableRange(newValue) && newValue <= NumC)
+            if (IsNumInAcceptableRange(newValue) && newValue >= NumA && newValue <= NumC)
             {
                 NumB = newValue;
             }
@@ -105,7 +94,7 @@
 
         public void TrySetC(int newValue)
         {
-            if (IsNumInAcceptableRange(newValue))
+            if (IsNumInAcceptableRange(newValue) && newValue >= NumB)
             {
                 NumC = newValue;
             }
@@ -113,18 +102,9 @@
             UiUpdateC?.Invoke(NumC);
         }
 
-        public ModelOfInequalityOfThreeNumbers(int minValue, int maxValue)
-        {
-            _minValue = minValue;
-            _maxValue = maxValue;
-            _numA = minValue;
-            _numB = (minValue + maxValue) / 2;
-            _numC = maxValue;
-        }
-
         private bool IsNumInAcceptableRange(int numToCheck)
         {
-            return _minValue <= numToCheck && _maxValue >= numToCheck;
+            return MinValue <= numToCheck && MaxValue >= numToCheck;
         }
     }
 }
